@@ -4,6 +4,8 @@ var inputColor = document.getElementById('inputColor');
 var sliderText = document.getElementById('sliderText');
 var slider = document.getElementById('slider');
 
+var alteredColor = document.getElementById('alteredColor');
+
 hexInput.addEventListener('keyup', () => {
     var hex = hexInput.value;
     if (!isValidHex(hex))
@@ -67,16 +69,16 @@ var alterColor = (hex, per) => {
     } = convertHexToRGB(hex);
 
     var amount = Math.floor((per / 100) * 255);
-    console.log(amount);
+    // console.log(amount);
 
     var newR = increaseWithinRange(r, amount);
     var newG = increaseWithinRange(g, amount);
     var newB = increaseWithinRange(b, amount);
-    console.log({
-        newR,
-        newG,
-        newB
-    });
+    // console.log({
+    //     newR,
+    //     newG,
+    //     newB
+    // });
 
     return convertRGBtoHex(newR, newG, newB);
 }
@@ -95,6 +97,13 @@ var increaseWithinRange = (hex, amount) => {
 
 
 slider.addEventListener('input', () => {
+    if(!isValidHex(hexInput.value))
+        return;
+    
     // console.log(slider.value);
     sliderText.textContent = `${slider.value}%`;
+
+    var alteredHex = alterColor(hexInput.value, slider.value);
+    alteredColor.style.backgroundColor = alteredHex;
+    alteredColorText.innerHTML = `Altered Color ${alteredHex}`;
 })
