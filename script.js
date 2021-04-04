@@ -36,10 +36,14 @@ var convertHexToRGB = (hex) => {
             strippedHex[2] + strippedHex[2];
     }
     // console.log(strippedHex);
-    var r = parseInt(strippedHex.substring(0,2), 16);
-    var g = parseInt(strippedHex.substring(2,4), 16);
-    var b = parseInt(strippedHex.substring(4,6), 16);
-    return {r, g, b}; 
+    var r = parseInt(strippedHex.substring(0, 2), 16);
+    var g = parseInt(strippedHex.substring(2, 4), 16);
+    var b = parseInt(strippedHex.substring(4, 6), 16);
+    return {
+        r,
+        g,
+        b
+    };
 }
 // console.log(convertHexToRGB("ffe"));
 
@@ -56,17 +60,36 @@ var convertRGBtoHex = (r, g, b) => {
 
 
 var alterColor = (hex, per) => {
-    var {r, g, b} = convertHexToRGB(hex);
+    var {
+        r,
+        g,
+        b
+    } = convertHexToRGB(hex);
 
-    var amount = Math.floor((per/100) * 255);
-    // console.log(amount);
+    var amount = Math.floor((per / 100) * 255);
+    console.log(amount);
 
-    var newR = r + amount;
-    var newG = g + amount;
-    var newB = b + amount;
-    // console.log(newR, newG, newB);
+    var newR = increaseWithinRange(r, amount);
+    var newG = increaseWithinRange(g, amount);
+    var newB = increaseWithinRange(b, amount);
+    console.log({
+        newR,
+        newG,
+        newB
+    });
 
     return convertRGBtoHex(newR, newG, newB);
+}
+// console.log(alterColor('fff', 10));
+
+
+var increaseWithinRange = (hex, amount) => {
+    var newHex = hex + amount;
+    if (newHex > 255)
+        return 255;
+    if (newHex < 0)
+        return 0;
+    return newHex;
 }
 // console.log(alterColor('000', 10));
 
