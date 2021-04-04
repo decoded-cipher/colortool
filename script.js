@@ -55,6 +55,22 @@ var convertRGBtoHex = (r, g, b) => {
 // console.log(convertRGBtoHex(255, 238, 255));
 
 
+var alterColor = (hex, per) => {
+    var {r, g, b} = convertHexToRGB(hex);
+
+    var amount = Math.floor((per/100) * 255);
+    // console.log(amount);
+
+    var newR = r + amount;
+    var newG = g + amount;
+    var newB = b + amount;
+    // console.log(newR, newG, newB);
+
+    return convertRGBtoHex(newR, newG, newB);
+}
+// console.log(alterColor('000', 10));
+
+
 slider.addEventListener('input', () => {
     // console.log(slider.value);
     sliderText.textContent = `${slider.value}%`;
