@@ -36,7 +36,7 @@ var convertHexToRGB = (hex) => {
     var r = parseInt(strippedHex.substring(0,2), 16);
     var g = parseInt(strippedHex.substring(2,4), 16);
     var b = parseInt(strippedHex.substring(4,6), 16);
-    return {r, g, b};
+    return {r, g, b}; 
 }
 
 // console.log(convertHexToRGB("ffe"));
