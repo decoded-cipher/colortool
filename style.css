@@ -33,7 +33,7 @@ input[type="text"] {
     background-color: #c6d5ac;
     margin-bottom: 25px;
 }
-
+/* 
 .footer {
     text-align: center;
     font-size: smaller;
@@ -47,16 +47,16 @@ a {
 a:hover {
     text-decoration: none;
     color: black;
-}
+} */
 
 @media only screen and (max-width: 600px) {
     input {
         width: 100%;
     }
 }
-
+/* 
 @media screen and (min-width: 800px) {
     .footer {
         padding-top: 60px;
     }
-}
+} */
