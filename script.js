@@ -1,6 +1,9 @@
 var hexInput = document.getElementById('hexInput');
 var inputColor = document.getElementById('inputColor');
 
+var sliderText = document.getElementById('sliderText');
+var slider = document.getElementById('slider');
+
 hexInput.addEventListener('keyup', () => {
     var hex = hexInput.value;
     if (!isValidHex(hex))
@@ -50,3 +53,9 @@ var convertRGBtoHex = (r, g, b) => {
     return hex;
 }
 // console.log(convertRGBtoHex(255, 238, 255));
+
+
+slider.addEventListener('input', () => {
+    // console.log(slider.value);
+    sliderText.textContent = `${slider.value}%`;
+})
