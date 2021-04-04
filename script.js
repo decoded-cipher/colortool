@@ -23,7 +23,7 @@ var isValidHex = (hex) => {
 
 var convertHexToRGB = (hex) => {
     if (!hex) {
-        return;
+        return null;
     }
     var strippedHex = hex.replace('#', '');
 
@@ -38,5 +38,15 @@ var convertHexToRGB = (hex) => {
     var b = parseInt(strippedHex.substring(4,6), 16);
     return {r, g, b}; 
 }
-
 // console.log(convertHexToRGB("ffe"));
+
+
+var convertRGBtoHex = (r, g, b) => {
+    var firstPair = ('0' + r.toString(16)).slice(-2);
+    var secondPair = ('0' + g.toString(16)).slice(-2);
+    var thirdPair = ('0' + b.toString(16)).slice(-2);
+
+    var hex = '#' + firstPair + secondPair + thirdPair;
+    return hex;
+}
+// console.log(convertRGBtoHex(255, 238, 255));
