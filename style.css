@@ -34,8 +34,29 @@ input[type="text"] {
     margin-bottom: 25px;
 }
 
+.footer {
+    text-align: center;
+    font-size: smaller;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
 @media only screen and (max-width: 600px) {
     input {
         width: 100%;
     }
-  }
+}
+
+@media screen and (min-width: 800px) {
+    .footer {
+        padding-top: 60px;
+    }
+}
