@@ -17,6 +17,7 @@ hexInput.addEventListener('keyup', () => {
 
     var strippedHex = hex.replace('#', '');
     inputColor.style.backgroundColor = "#" + strippedHex;
+    reset();
 })
 
 
@@ -112,6 +113,7 @@ slider.addEventListener('input', () => {
     // var alteredHex = alterColor(hexInput.value, slider.value);
     var alteredHex = alterColor(hexInput.value, valueAddition);
     alteredColor.style.backgroundColor = alteredHex;
+    console.log(alteredHex);
     alteredColorText.innerHTML = `Altered Color ${alteredHex}`;
 })
 
@@ -126,4 +128,17 @@ toggleBtn.addEventListener('click', () => {
         lightenText.classList.add('unselected');
         darkenText.classList.remove('unselected');
     }
+    reset();
 })
+
+
+var reset = () => {
+    slider.value = 0;
+    sliderText.innerText = '0%';
+
+    var strippedResetHex = hexInput.value.replace('#', '');
+    var resetHex = '#' + strippedResetHex;
+    
+    alteredColor.style.backgroundColor = resetHex;
+    alteredColorText.innerText = `Altered Color ${resetHex}`;
+}
