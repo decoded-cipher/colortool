@@ -6,6 +6,10 @@ var slider = document.getElementById('slider');
 
 var alteredColor = document.getElementById('alteredColor');
 
+var lightenText = document.getElementById('lightenText');
+var darkenText = document.getElementById('darkenText');
+var toggleBtn = document.getElementById('toggleBtn');
+
 hexInput.addEventListener('keyup', () => {
     var hex = hexInput.value;
     if (!isValidHex(hex))
@@ -97,13 +101,26 @@ var increaseWithinRange = (hex, amount) => {
 
 
 slider.addEventListener('input', () => {
-    if(!isValidHex(hexInput.value))
+    if (!isValidHex(hexInput.value))
         return;
-    
+
     // console.log(slider.value);
     sliderText.textContent = `${slider.value}%`;
 
     var alteredHex = alterColor(hexInput.value, slider.value);
     alteredColor.style.backgroundColor = alteredHex;
     alteredColorText.innerHTML = `Altered Color ${alteredHex}`;
+})
+
+
+toggleBtn.addEventListener('click', () => {
+    if (toggleBtn.classList.contains('toggled')) {
+        toggleBtn.classList.remove('toggled');
+        lightenText.classList.remove('unselected');
+        darkenText.classList.add('unselected');
+    } else {
+        toggleBtn.classList.add('toggled');
+        lightenText.classList.add('unselected');
+        darkenText.classList.remove('unselected');
+    }
 })
