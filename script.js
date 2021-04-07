@@ -6,6 +6,10 @@ var slider = document.getElementById('slider');
 
 var alteredColor = document.getElementById('alteredColor');
 
+var lightenText = document.getElementById('lightenText');
+var darkenText = document.getElementById('darkenText');
+var toggleBtn = document.getElementById('toggleBtn');
+
 hexInput.addEventListener('keyup', () => {
     var hex = hexInput.value;
     if (!isValidHex(hex))
@@ -13,6 +17,7 @@ hexInput.addEventListener('keyup', () => {
 
     var strippedHex = hex.replace('#', '');
     inputColor.style.backgroundColor = "#" + strippedHex;
+    reset();
 })
 
 
@@ -97,13 +102,43 @@ var increaseWithinRange = (hex, amount) => {
 
 
 slider.addEventListener('input', () => {
-    if(!isValidHex(hexInput.value))
+    if (!isValidHex(hexInput.value))
         return;
-    
+
     // console.log(slider.value);
     sliderText.textContent = `${slider.value}%`;
 
-    var alteredHex = alterColor(hexInput.value, slider.value);
+    var valueAddition = toggleBtn.classList.contains('toggled') ? -slider.value : slider.value;
+
+    // var alteredHex = alterColor(hexInput.value, slider.value);
+    var alteredHex = alterColor(hexInput.value, valueAddition);
     alteredColor.style.backgroundColor = alteredHex;
+    console.log(alteredHex);
     alteredColorText.innerHTML = `Altered Color ${alteredHex}`;
 })
+
+
+toggleBtn.addEventListener('click', () => {
+    if (toggleBtn.classList.contains('toggled')) {
+        toggleBtn.classList.remove('toggled');
+        lightenText.classList.remove('unselected');
+        darkenText.classList.add('unselected');
+    } else {
+        toggleBtn.classList.add('toggled');
+        lightenText.classList.add('unselected');
+        darkenText.classList.remove('unselected');
+    }
+    reset();
+})
+
+
+var reset = () => {
+    slider.value = 0;
+    sliderText.innerText = '0%';
+
+    var strippedResetHex = hexInput.value.replace('#', '');
+    var resetHex = '#' + strippedResetHex;
+    
+    alteredColor.style.backgroundColor = resetHex;
+    alteredColorText.innerText = `Altered Color ${resetHex}`;
+}

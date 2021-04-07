@@ -89,7 +89,7 @@ a:hover {
 }
 
 .toggle-btn.toggled>.inner-circle {
-    transform: translateX(30px);
+    transform: translateX(25px);
     background-color: #333;
 }
 
